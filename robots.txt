@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://itstheprakash.github.io/how-to-download-View-only-pdf/sitemap.xml
