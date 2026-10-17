@@ -141,7 +141,7 @@ This finds all loaded page images, merges them into one PDF and downloads it.
 
 ---
 
-## Scripts  Start copy  and pastint  step wise step 👇
+## 👇👇👇 Scripts  Start copy  and pastint  step wise step 👇👇👇
 
 ### Script 1: Auto-Scroll
 
