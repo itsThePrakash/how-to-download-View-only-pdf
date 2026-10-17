@@ -1,53 +1,154 @@
+# Google Drive PDF Downloader: Save Drive Preview Documents as a High-Quality PDF (JavaScript Console Script)
 
-# 📄 Google Drive Document to PDF Saver
+> A simple, free, browser-console script to **download a Google Drive document preview as a single high-resolution PDF**. No extension, no software install, just two copy-paste snippets.
 
-This repository contains two JavaScript snippets that let you download Google Drive documents (previewed as `blob:` images) into a **single high-resolution PDF file**.
+**Keywords:** google drive pdf downloader, save google drive preview as pdf, google drive document to pdf, download drive file as pdf, drive blob image to pdf, jsPDF script, browser console script, high resolution pdf
 
------
+---
 
-## 🤔 Why Use This Script?
+## Table of Contents
 
- "Print to PDF" (`Ctrl+P`) feature,  This script downloads the **original, full-resolution images** 
+1. [What Is This?](#what-is-this)
+2. [Why Use This Script Instead of Ctrl+P?](#why-use-this-script-instead-of-ctrlp)
+3. [Features](#features)
+4. [Quick Start (TL;DR)](#quick-start-tldr)
+5. [How It Works](#how-it-works)
+6. [Step-by-Step Guide](#step-by-step-guide)
+7. [Scripts](#scripts)
+8. [Troubleshooting](#troubleshooting)
+9. [FAQ](#faq)
+10. [Limitations](#limitations)
+11. [Responsible Use](#responsible-use)
+12. [Sponsor](#sponsor)
+13. [Contributing](#contributing)
 
+---
 
------
+## What Is This?
 
-## 🚀 Features
+When you open a document in the Google Drive previewer, each page is shown as a `blob:` image inside your browser. This project contains **two JavaScript snippets** that:
 
-  - ✅ Auto-scrolls through the document to **load all pages**.
-  - ✅ Extracts `blob:` image URLs from the Google Drive preview.
-  - ✅ Stitches images into a **single PDF** with correct page orientation (portrait/landscape).
-  - ✅ Automatically names the PDF using the document’s title.
+1. Scroll through the whole document so every page loads.
+2. Collect all page images and combine them into **one PDF file** that downloads automatically.
 
------
+It works in Chrome, Edge, Brave and Firefox.
 
-## 🛠️ How to Use
+---
 
-Follow these steps carefully in your browser (like Chrome or Firefox) to generate the PDF.
+## Why Use This Script Instead of Ctrl+P?
 
-### **Step 1: Open the Document in a New Window**
+The browser's **Print to PDF (`Ctrl+P`)** feature often gives poor results for Drive previews:
 
-1.  Navigate to the file in your Google Drive.
-2.  Right-click on the file and select **Open in new window**. This is crucial for the script to access the correct preview elements.
+| Print to PDF (`Ctrl+P`) | This Script |
+|---|---|
+| Pages can be cut off or split | One image per page, no cut-offs |
+| Layout and margins may change | Original page size and orientation kept |
+| Lower image quality | Full-resolution images (JPEG quality 1.0) |
+| Manual file naming | PDF is named after the document title |
 
-### **Step 2: Open Developer Tools**
+---
 
-1.  With the document preview open in the new window, open your browser's Developer Tools.
-      - **Windows/Linux**: Press `F12`
-      - **Mac**: Press `Option + ⌘ + I`
-2.  Click on the **"Console"** tab.
-3.  If you see a warning, you might need to type `allow pasting` and press **Enter** to enable pasting code.
+## Features
 
-### **Step 3: Run the Auto-Scroll Script**
+- ✅ **Auto-scrolls** the document so all pages are loaded
+- ✅ **Extracts `blob:` image URLs** from the Google Drive preview
+- ✅ **Single PDF output** with correct portrait/landscape orientation per page
+- ✅ **Automatic file name** taken from the document title
+- ✅ **Progress shown in the console** (page X of Y, percentage)
 
-This script scrolls through the entire document to ensure all pages are loaded into the browser's memory.
+---
 
-1.  Copy the code below.
-2.  Paste it into the console and press **Enter**.
-3.  Wait for the page to scroll to the bottom and for an alert box that says: **"Auto-scroll complete. Now run the PDF download script."**
+## Quick Start (TL;DR)
 
-\<details\>
-\<summary\>Click to view Auto-Scroll Script\</summary\>
+| # | Action | You should see |
+|---|---|---|
+| 1 | Open the file in Drive → right-click → **Open in new window** | Document preview in its own window |
+| 2 | Press `F12` (Windows/Linux) or `Option + ⌘ + I` (Mac) → **Console** tab | Empty console with a `>` prompt |
+| 3 | Type `allow pasting` + **Enter** (only if asked) | Pasting is now enabled |
+| 4 | Paste **[Script 1: Auto-Scroll](#script-1-auto-scroll)** → **Enter** | Page scrolls itself to the bottom, then an alert |
+| 5 | Paste **[Script 2: PDF Generation](#script-2-pdf-generation)** → **Enter** | Progress in console, then the PDF downloads |
+
+---
+
+## How It Works
+
+```text
+  Open in new window  ───▶  Auto-scroll loads all pages  ───▶  Pages merged into 1 PDF  ───▶  Download
+      (Step 1-2)                    (Step 3)                          (Step 4)                  (done 🎉)
+```
+
+---
+
+## Step-by-Step Guide
+
+### Step 1: Open the Document in a New Window
+
+1. Go to the file in your Google Drive.
+2. Right-click the file and choose **Open in new window**.
+
+> [!IMPORTANT]
+> Do not skip the new window. The scripts need the preview elements of that window to work.
+
+✅ **Done when:** the document opens in its own browser window.
+
+---
+
+### Step 2: Open the Browser Console
+
+1. In the new window, open Developer Tools:
+   - **Windows / Linux:** press `F12`
+   - **Mac:** press `Option + ⌘ + I`
+2. Click the **Console** tab.
+3. If the browser warns about pasting code, type `allow pasting` and press **Enter**.
+
+> [!TIP]
+> Chrome and Edge show a "Don't paste code you don't understand" warning. This is normal. Typing `allow pasting` enables the paste.
+
+✅ **Done when:** you see the Console tab with a blinking cursor.
+
+---
+
+### Step 3: Run Script 1 (Auto-Scroll)
+
+This scrolls through the whole document so every page loads into browser memory.
+
+1. Copy **[Script 1: Auto-Scroll](#script-1-auto-scroll)** (or the `auto-scroll.js` file).
+2. Paste it into the console and press **Enter**.
+3. Wait while the page scrolls down by itself.
+
+✅ **Done when:** an alert says **"Auto-scroll complete. Now run the PDF download script."**
+
+> [!WARNING]
+> Do not run Script 2 before this alert. Pages that were never loaded will be missing from the PDF.
+
+---
+
+### Step 4: Run Script 2 (PDF Generation)
+
+This finds all loaded page images, merges them into one PDF and downloads it.
+
+1. Copy **[Script 2: PDF Generation](#script-2-pdf-generation)** (or the `script.js` file).
+2. Paste it into the console and press **Enter**.
+3. Watch the console: `Processing page X of Y (Z%)`.
+4. Wait for the file to download. 🎉
+
+✅ **Done when:** the alert says your file has been downloaded. The PDF is named after the document title.
+
+> [!NOTE]
+> Keep the tab **in focus** and do not close it until the download finishes.
+
+---
+
+---
+
+## Scripts
+
+### Script 1: Auto-Scroll
+
+Forces all pages of the document to load.
+
+<details>
+<summary>Click to view the Auto-Scroll script</summary>
 
 ```javascript
 /*
@@ -84,18 +185,14 @@ This script scrolls through the entire document to ensure all pages are loaded i
 })();
 ```
 
-\</details\>
+</details>
 
-### **Step 4: Run the PDF Generation Script**
+### Script 2: PDF Generation
 
-After all pages are loaded, this script will find all the page images, combine them into a PDF, and download it.
+Finds all loaded page images, combines them into a PDF and downloads it.
 
-1.  Copy the code below.
-2.  Paste it into the console and press **Enter**.
-3.  The PDF will be generated and should start downloading automatically. 🎉
-
-\<details\>
-\<summary\>Click to view PDF Generation Script\</summary\>
+<details>
+<summary>Click to view the PDF Generation script</summary>
 
 ```javascript
 /*
@@ -183,39 +280,93 @@ After all pages are loaded, this script will find all the page images, combine t
 })();
 ```
 
-\</details\>
+</details>
 
------
+---
 
-## ⚠️ Limitations & Important Notes
+## Repository Files
 
-  - This script is designed for the **Google Drive document previewer** and may not work on other websites.
-  - The final PDF will contain **images**, not selectable text. This is because the script is essentially taking screenshots of each page.
-  - For **very large documents**, the browser may become slow or run out of memory. The final PDF file size can also be quite large.
-  - You must keep the browser tab **in focus** while the scripts are running.
+| File | Purpose |
+|---|---|
+| `auto-scroll.js` | Script 1: scrolls the preview so every page loads |
+| `script.js` | Script 2: builds the PDF from the loaded pages and downloads it |
+| `.github/FUNDING.yml` | Sponsor button configuration |
 
------
+---
 
-## ❤️ Sponsor
+## Troubleshooting
 
-If this project helps you, you can support ongoing development from the **Sponsor** button on this repository.
+| Problem | Solution |
+|---|---|
+| Console won't let me paste | Type `allow pasting` and press Enter, then paste again |
+| "No scrollable area was found" | Make sure you opened the file via **Open in new window**, then retry |
+| "No document images found" | Run Script 1 again and wait for the completion alert before running Script 2 |
+| Some pages are missing | Scroll slowly to the end manually, then run Script 2 again |
+| Browser freezes or crashes | The document is too large. Close other tabs or try a device with more RAM |
+| Nothing downloads | Allow downloads and pop-ups for `drive.google.com` and check that jsPDF loaded (needs internet access to `unpkg.com`) |
+| Error about `meta[itemprop="name"]` | The page layout differs. Reload the preview in a new window and try again |
 
-### 📌 Payment info kahan add karein?
+---
 
-All sponsor/payment details are configured in:
+## FAQ
 
-- `.github/FUNDING.yml`
+**How do I save a Google Drive document as a PDF with all pages?**
+Open it in a new window, run the auto-scroll script, then the PDF generation script. All loaded pages are merged into one PDF.
 
-You can add your payment/support info there, for example:
+**Why is the PDF text not selectable?**
+The script saves each page as an image, so the PDF contains pictures of pages, not text. Use an OCR tool afterwards if you need searchable text.
+
+**Is this better than Print to PDF?**
+For Drive previews, usually yes, because it keeps the original image resolution and page size.
+
+**Which browsers work?**
+Chrome, Edge, Brave and Firefox with Developer Tools.
+
+**Do I need to install anything?**
+No. The script loads the jsPDF library automatically.
+
+---
+
+## Limitations
+
+- Built for the **Google Drive document previewer**. It may not work on other websites.
+- The PDF contains **images, not selectable text**, because each page is captured as an image.
+- **Very large documents** can make the browser slow or run out of memory, and the PDF can be big.
+- Keep the browser tab **in focus** while the scripts run.
+- Google may change its page structure at any time, which can break the scripts.
+
+---
+
+## Responsible Use
+
+Use this tool only on documents you own or have permission to copy and save. Respect the owner's sharing settings and applicable copyright laws. You are responsible for how you use it.
+
+---
+
+## Sponsor
+
+If this project helps you, you can support ongoing development with the **Sponsor** button on this repository.
+
+### Setting up sponsor / payment info (for the repo owner)
+
+Sponsor details are configured in `.github/FUNDING.yml`. Add your details there, for example:
 
 - `github`: GitHub Sponsors username
-- `patreon`, `ko_fi`, `buy_me_a_coffee`, etc. for platform usernames
+- `patreon`, `ko_fi`, `buy_me_a_coffee`: platform usernames
 - `custom`: direct payment links (UPI, Razorpay, PayPal, personal payment page)
 
-After updating `FUNDING.yml` and pushing changes, GitHub automatically updates the **Sponsor** button.
+After you push the changes, GitHub automatically updates the **Sponsor** button.
 
------
+---
 
-## 🤝 Contributing
+## Contributing
 
-Contributions, issues, and feature requests are welcome\!
+Contributions, issues and feature requests are welcome! Open an issue or submit a pull request.
+
+---
+
+### 🔎 Suggested GitHub Repo Settings (for better search visibility)
+
+**Description:** Download Google Drive preview documents as a single high-resolution PDF using a simple browser console script.
+
+**Topics:** `google-drive`, `pdf`, `pdf-downloader`, `jspdf`, `javascript`, `browser-console`, `userscript`, `google-drive-downloader`, `blob-to-pdf`, `document-to-pdf`
