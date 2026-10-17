@@ -196,7 +196,26 @@ After all pages are loaded, this script will find all the page images, combine t
 
 -----
 
+## ❤️ Sponsor
+
+If this project helps you, you can support ongoing development from the **Sponsor** button on this repository.
+
+### 📌 Payment info kahan add karein?
+
+All sponsor/payment details are configured in:
+
+- `.github/FUNDING.yml`
+
+You can add your payment/support info there, for example:
+
+- `github`: GitHub Sponsors username
+- `patreon`, `ko_fi`, `buy_me_a_coffee`, etc. for platform usernames
+- `custom`: direct payment links (UPI, Razorpay, PayPal, personal payment page)
+
+After updating `FUNDING.yml` and pushing changes, GitHub automatically updates the **Sponsor** button.
+
+-----
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome\!
-
