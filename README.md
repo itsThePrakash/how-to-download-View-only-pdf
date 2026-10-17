@@ -196,7 +196,12 @@ After all pages are loaded, this script will find all the page images, combine t
 
 -----
 
+## ❤️ Sponsor
+
+If this project helps you, you can support ongoing development from the **Sponsor** button on this repository.
+
+-----
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome\!
-
